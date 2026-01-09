@@ -20,7 +20,7 @@ jobs:
       # step 2: download and extract the ImmortalWrt SDK
       - name: Download and Extract SDK
         run: |
-          wget http://downloads.pangubox.com:6380/pandorabox/19.01/targets/ralink/mt7620/PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64-2018-12-31-git-4b6a3d5ca.tar.xz
+          wget http://pandorabox.tuuz.cc:8000/pandorabox/19.01/targets/ralink/mt7620/PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64-2018-12-31-git-4b6a3d5ca.tar.xz
           tar xvf PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64-2018-12-31-git-4b6a3d5ca.tar.xz
 
       # step 3: compile the driver
@@ -56,5 +56,5 @@ jobs:
       - name: Upload Driver as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: avl6381-driver-modules
+          name: PandoraBox-19.01-ralink-mt7620-avl6381-driver-modules
           path: build/ko_modules
