@@ -24,9 +24,10 @@ jobs:
           #sudo apt-get update && sudo apt-get install -y aria2
           
           # 使用 aria2 下载，-x 16 表示 16 个线程，-s 16 表示 16 个连接
-          URL="http://pandorabox.tuuz.cc:8000/pandorabox/19.01/targets/ralink/mt7620/PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64-2018-12-31-git-4b6a3d5ca.tar.xz"
-          FILENAME="PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64-2018-12-31-git-4b6a3d5ca.tar.xz"
-          
+          #URL="http://pandorabox.tuuz.cc:8000/pandorabox/19.01/targets/ralink/mt7620/PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64-2018-12-31-git-4b6a3d5ca.tar.xz"
+          #FILENAME="PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64-2018-12-31-git-4b6a3d5ca.tar.xz"
+          URL="https://dl.qiedd.com/pandorabox/SDK/PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64.tar.xz"
+          FILENAME="PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64.tar.xz"
           echo "Starting download with aria2..."
           
           # 参数解释：
@@ -49,7 +50,8 @@ jobs:
         # set environment variables and run make commands
         run: |
           # The SDK is extracted, so we can define its path
-          SDK_DIR=$(pwd)/PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64-2018-12-31-git-4b6a3d5ca
+          #SDK_DIR=$(pwd)/PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64-2018-12-31-git-4b6a3d5ca
+          SDK_DIR=$(pwd)/PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64
 
           # Set the environment variables as per the instructions
           export ARCH=mips
@@ -76,5 +78,5 @@ jobs:
       - name: Upload Driver as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PandoraBox-19.01-ralink-mt7620-avl6381-driver-modules
+          name: PandoraBox-19.01-ralink-mt7620-avl6381-driver-modules-test
           path: build/ko_modules
