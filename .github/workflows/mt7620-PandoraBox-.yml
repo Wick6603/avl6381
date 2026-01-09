@@ -21,16 +21,27 @@ jobs:
       - name: Download and Extract SDK
         run: |
           # 安装 aria2
-          sudo apt-get update && sudo apt-get install -y aria2
+          #sudo apt-get update && sudo apt-get install -y aria2
           
           # 使用 aria2 下载，-x 16 表示 16 个线程，-s 16 表示 16 个连接
           URL="http://pandorabox.tuuz.cc:8000/pandorabox/19.01/targets/ralink/mt7620/PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64-2018-12-31-git-4b6a3d5ca.tar.xz"
           FILENAME="PandoraBox-SDK-ralink-mt7620_gcc-5.5.0_uClibc-1.0.x.Linux-x86_64-2018-12-31-git-4b6a3d5ca.tar.xz"
           
-          aria2c -x 16 -s 16 -k 1M --console-log-level=warn "$URL" -o "$FILENAME"
+          echo "Starting download with aria2..."
           
-          # 解压
+          # 参数解释：
+          # -x 10 -s 10: 针对 4 核环境，10 个连接比较稳健
+          # --summary-interval=3: 每 3 秒显示一次网速和进度
+          # --console-log-level=notice: 只显示关键通知和摘要
+          # --allow-overwrite=true: 允许覆盖同名文件
+          aria2c -x 10 -s 10 -k 1M \
+                 --summary-interval=3 \
+                 --console-log-level=notice \
+                 "$URL" -o "$FILENAME"
+          
+          echo "Download complete. Extracting..."
           tar xf "$FILENAME"
+          echo "Extraction finished."
 
       # step 3: compile the driver
       # all compilation steps are combined into one run block
