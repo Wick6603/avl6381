@@ -34,7 +34,7 @@ jobs:
           # Set the environment variables as per the instructions
           export ARCH=mips
           export STAGING_DIR="${SDK_DIR}/staging_dir/toolchain-mipsel_24kc_gcc-7.5.0_musl/bin/"
-          export KERNEL_DIR="${SDK_DIR}/build_dir/target-mipsel_24kc_musl/linux-ralink_mt7620/linux-4.14.275"
+          export KERNEL_DIR="${SDK_DIR}/build_dir/target-mipsel_24kc_musl/linux-ramips_mt7620/linux-4.14.275"
           export TOOLCHAIN="${SDK_DIR}/staging_dir/toolchain-mipsel_24kc_gcc-7.5.0_musl/bin/mipsel-openwrt-linux-"
           
           # Check if the directories exist before compiling
